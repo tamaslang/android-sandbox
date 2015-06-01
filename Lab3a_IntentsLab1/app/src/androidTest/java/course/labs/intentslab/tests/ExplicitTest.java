@@ -27,7 +27,7 @@ public class ExplicitTest extends
 	// Executes the ExplicitTest
 	public void testRun() {
 
-		int delay = 2000;
+		int delay = 4000;
 		// =================== Section One =====================
 		// Wait for activity: 'course.labs.intentslab.ActivityLoaderActivity'
 		assertTrue(

@@ -14,6 +14,8 @@ public class ExplicitlyLoadedActivity extends Activity {
 	static private final String TAG = "Lab-Intents";
 
 	private EditText mEditText;
+
+	public static final String EDIT_TEXT_KEY = "EDIT_TEXT_KEY";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,7 @@ public class ExplicitlyLoadedActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
 				enterClicked();
-			
 			}
 		});
 
@@ -45,20 +45,10 @@ public class ExplicitlyLoadedActivity extends Activity {
 	private void enterClicked() {
 
 		Log.i(TAG,"Entered enterClicked()");
-
-        Intent intent = new Intent();
-        intent.setClass(this.getApplicationContext(),ActivityLoaderActivity.class);
-        intent.putExtra("edittextvalue",mEditText.getText().toString());
-        setResult(RESULT_OK, intent);
-        finish();
-		
-		// TODO - Save user provided input from the EditText field
-
-		// TODO - Create a new intent and save the input from the EditText field as an extra
-		
-		// TODO - Set Activity's result with result code RESULT_OK
-		
-		// TODO - Finish the Activity
-
+		String textEntered = mEditText.getText().toString();
+		Intent callingActivity = new Intent();
+		callingActivity.putExtra(EDIT_TEXT_KEY,textEntered);
+		setResult(RESULT_OK,callingActivity);
+		finish();
 	}
 }

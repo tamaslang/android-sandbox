@@ -7,6 +7,7 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
+* .DS_Store
 * Lab-Intents.pdf
 * Lab3a_IntentsLab.iml
 * ic_launcher-web.png
@@ -25,18 +26,6 @@ You can disable the jar replacement in the import wizard and try again:
 
 robotium-solo-5.3.1.jar => com.jayway.android.robotium:robotium-solo:5.3.1
 
-Potentially Missing Dependency:
--------------------------------
-When we replaced the following .jar files with a Gradle dependency, we
-inferred the dependency version number from the filename. This
-specific version may not actually be available from the repository.
-If you get a build error stating that the dependency is missing, edit
-the version number to for example "+" to pick up the latest version
-instead. (This may require you to update your code if the library APIs
-have changed.)
-
-robotium-solo-5.3.1.jar => version 5.3.1 in com.jayway.android.robotium:robotium-solo:5.3.1
-
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
@@ -45,6 +34,10 @@ Eclipse projects. Here's how the projects were restructured:
 * AndroidManifest.xml => app/src/main/AndroidManifest.xml
 * res/ => app/src/main/res/
 * src/ => app/src/main/java/
+* src/.DS_Store => app/src/main/resources/.DS_Store
+* src/course/.DS_Store => app/src/main/resources/course/.DS_Store
+* src/course/labs/.DS_Store => app/src/main/resources/course/labs/.DS_Store
+* src/course/labs/intentslab/.DS_Store => app/src/main/resources/course/labs/intentslab/.DS_Store
 * Test/libs/robotium-solo-5.3.1.jar => app/libs/robotium-solo-5.3.1.jar
 * Test/res/ => app/src/androidTest/res/
 * Test/src/ => app/src/androidTest/java/

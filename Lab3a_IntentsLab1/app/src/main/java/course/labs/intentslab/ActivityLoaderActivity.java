@@ -33,89 +33,59 @@ public class ActivityLoaderActivity extends Activity {
 		// Declare and setup Explicit Activation button
 		Button explicitActivationButton = (Button) findViewById(R.id.explicit_activation_button);
 		explicitActivationButton.setOnClickListener(new OnClickListener() {
-            
+
 			// Call startExplicitActivation() when pressed
 			@Override
 			public void onClick(View v) {
-				
+
 				startExplicitActivation();
-                
+
 			}
 		});
         
 		// Declare and setup Implicit Activation button
 		Button implicitActivationButton = (Button) findViewById(R.id.implicit_activation_button);
 		implicitActivationButton.setOnClickListener(new OnClickListener() {
-            
+
 			// Call startImplicitActivation() when pressed
 			@Override
 			public void onClick(View v) {
-                
+
 				startImplicitActivation();
-                
+
 			}
 		});
         
 	}
-    
-	
-	// Start the ExplicitlyLoadedActivity
-	
+
 	private void startExplicitActivation() {
         
 		Log.i(TAG,"Entered startExplicitActivation()");
 		
-		// TODO - Create a new intent to launch the ExplicitlyLoadedActivity class
-		Intent explicitIntent = new Intent();
-        explicitIntent.setClass(this.getApplicationContext(),ExplicitlyLoadedActivity.class);
-
-		
-		// TODO - Start an Activity using that intent and the request code defined above
-        startActivityForResult(explicitIntent,GET_TEXT_REQUEST_CODE);
-        
-        
+		Intent explicitIntent = new Intent(this,ExplicitlyLoadedActivity.class);
+		startActivityForResult(explicitIntent, GET_TEXT_REQUEST_CODE);
 	}
     
-	// Start a Browser Activity to view a web page or its URL
-	
 	private void startImplicitActivation() {
-        
 		Log.i(TAG, "Entered startImplicitActivation()");
-        
-		// TODO - Create a base intent for viewing a URL
-		// (HINT:  second parameter uses Uri.parse())
+
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
 		
-        Intent baseIntent = new Intent(Intent.ACTION_VIEW,Uri.parse(URL));
-		
-		// TODO - Create a chooser intent, for choosing which Activity
-		// will carry out the baseIntent
-		// (HINT: Use the Intent class' createChooser() method)
-		Intent chooserIntent = Intent.createChooser(baseIntent,CHOOSER_TEXT);
+		Intent chooserIntent = Intent.createChooser(webIntent,CHOOSER_TEXT);
 
 		Log.i(TAG,"Chooser Intent Action:" + chooserIntent.getAction());
-
-        startActivity(chooserIntent);
-        
-		// TODO - Start the chooser Activity, using the chooser intent
-
-        
+		startActivity(chooserIntent);
 	}
     
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        
 		Log.i(TAG, "Entered onActivityResult()");
-        if (requestCode == GET_TEXT_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                String stredittext = data.getStringExtra("edittextvalue");
-                mUserTextView.setText(stredittext);
-            }
-        }
-		// TODO - Process the result only if this method received both a
-		// RESULT_OK result code and a recognized request code
-		// If so, update the Textview showing the user-entered text.
-    
-    
-    
+		
+		if (requestCode == GET_TEXT_REQUEST_CODE) {
+			if (resultCode == RESULT_OK) {
+                String enteredText = data.getStringExtra(ExplicitlyLoadedActivity.EDIT_TEXT_KEY);
+                mUserTextView.setText(enteredText);
+			}
+		}
     }
 }

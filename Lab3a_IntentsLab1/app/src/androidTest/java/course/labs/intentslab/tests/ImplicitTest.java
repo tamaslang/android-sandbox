@@ -27,7 +27,7 @@ public class ImplicitTest extends
 	// Executes the ImplicitTest
 	public void testRun() {
 
-		int delay = 2000;
+		int delay = 4000;
 		
 		// =================== Section One =====================
 
